@@ -9,7 +9,7 @@ export default function UniversityContainer() {
     const BASE_URL="http://127.0.0.1:3000/" 
 
     const[univs,setUnivs] =  useState(null)
-    const[univsSingle,setUnivsSingle] =  useState(null)
+    
 
     useEffect(()=>{
         fetch(BASE_URL + 'universities')
@@ -17,12 +17,10 @@ export default function UniversityContainer() {
             .then (json => setUnivs(json))
     },[])
 
-    console.log('UNIVESINGLE');
-    console.log(setUnivsSingle);
-
+  
     function alluniversities(){
        return (
-            <StatesEU  setUnivsSingle={setUnivsSingle} univs={univs}/> )
+            <StatesEU univs={univs}/> )
     }
     
     return (

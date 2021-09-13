@@ -80,32 +80,31 @@ export default function StatesEU({univs}) {
     const [datasingle, setDatasingle] = useState({
         name: ""
     });
-
+    const[univsSingle,setUnivsSingle] =  useState(null)
     const [modaldat, setModaldat] = useState(false);
 
     const openclosemodalDat=()=>{
-            setModaldat(!modaldat)
+        setModaldat(!modaldat)
     }
 
 //Display Data State's Universities
 
     function handleState(st){
-        alert(st);
-        console.log('FUNCION');
-       alert(univs[0].name)
-        const univfilter =  univs.filter((uns) => uns.location == st)
-        setDatasingle(univfilter)
-        openclosemodalDat()
+        const univfilter =  univs.filter((uns) => uns.location == st);
+        setDatasingle(univfilter);
+        setUnivsSingle(st);
+        openclosemodalDat();
     }
 
     let displayData=''
 
-    if(modaldat){
+    if(modaldat){console.log('DATASINGLE');
+console.log({datasingle});
         console.log('ENTRE A DISPLAY')
         displayData= (
             <div className={styles.modal}>
-                <h2 className="h2margin">"HOLA"</h2>
-                 <td className="colmargin" >"AQUI"</td>
+                <h2 className="h2margin">{univsSingle}</h2>
+                 <td className="colmargin" >{datasingle.map((tp) =><tr className="rowheight" >{tp.name}</tr>)}    </td>
                     <div align="right">  
                         <Button color="Primary" onClick={()=>openclosemodalDat()}>CLOSE</Button>
                     </div>
