@@ -1,13 +1,41 @@
+import React, {useEffect, useState} from 'react';
+import './University.css'
 
 
-export default function UniversityContainer({univs}) {
+export default function University({univs}) {
     return (
-        <div>
-          <td>
-                            {univs.map((univ) =>
-                                <tr  width='600px' height='50px'>{univ.name}</tr>
-                            )}
-                        </td>
+        <div className="grid-container">
+            <div>
+                <h1>Cuadro1</h1>
             </div>
+            <div>
+                <h1>Cuadro2</h1>
+            </div>
+            <div >
+                <h1>Cuadro3</h1>
+            </div>
+            <div >
+                <h1>Cuadro4</h1>
+            </div>
+            <div>
+                <h1>Cuadro5</h1>
+            </div>
+            <div>
+                <h1>Cuadro5</h1>
+            </div>
+            <div>
+                <h1>Cuadro5</h1>
+            </div>
+            <div>
+                <h1>Cuadro5</h1>
+            </div>
+            <div>
+                <h1>Cuadro5</h1>
+            </div>
+            <div>
+                <h1>Cuadro5</h1>
+            </div>
+</div>
+
     )
 }
