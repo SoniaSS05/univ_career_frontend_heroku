@@ -21,8 +21,13 @@ function NavBar() {
                     </NavLink>
                 </div>
                 <div className="navopt">
-                    <NavLink  to="/UniversityContainer">
+                    <NavLink  to="/">
                         Careers
+                    </NavLink>
+                </div>
+                <div className="navopt">
+                    <NavLink  to="/ReviewContainer">
+                        Reviews
                     </NavLink>
                 </div>
             </div>

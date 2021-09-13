@@ -1,8 +1,7 @@
 
 import React, {useEffect, useState} from 'react'
 import University from './University.js'
-import StatesEU from './StatesEU.js'
-import Tab from './Tab.js'
+
 
 
 export default function UniversityContainer() {
@@ -20,7 +19,7 @@ export default function UniversityContainer() {
   
     function alluniversities(){
        return (
-            <StatesEU univs={univs}/> )
+            <University univs={univs}/> )
     }
     
     return (
