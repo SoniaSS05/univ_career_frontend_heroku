@@ -43,13 +43,23 @@ export default function Review({univs, revs}) {
             <div> 
                 <h1 className="title">{tituniv}</h1>
             </div>
-            <div className="scrollstyle">
-                    
+            <div className="scrollstyle">    
                 <ReactScrollableFeed >
-                    {revsfilt.map((tp,i) =>{
-                     
+                    {revsfilt.map((tp,i) => {
                         return(
-                         <p className="comrow"  style={{ backgroundColor: i % 2 == 0?  'whitesmoke':'white'}} key={i}>{tp.comment}</p>
+                            <div>
+                                <tr>
+                                    <td className="comrow">
+                                        <p style={{backgroundColor: i % 2 == 0?  'whitesmoke':'white', minHeight:'50px'}} key={i}>{tp.comment}</p>
+                                    </td>
+                                    <td style={{ backgroundColor: i % 2 == 0?  'whitesmoke':'white'}} key={i}>
+                                        <button className='butt'>Delete</button>
+                                    </td>
+                                    <td style={{ backgroundColor: i % 2 == 0?  'whitesmoke':'white'}} key={i} >
+                                    <button className='butt'>Update</button>
+                                    </td>
+                                </tr>
+                            </div>
                         )
                         })
                     }

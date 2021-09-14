@@ -27,8 +27,19 @@
 
 .comrow{
     margin-right: 20px;
-    height:40px;
-    width: 900px;
-    padding-right: 40px;
+    width: 300px;
+}
+
+.butt {
+    background-color: #f85103;;
+    border: none;
+    color: white;
+    padding: 0px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px 8px 80px;
+    cursor: pointer;
 }
 

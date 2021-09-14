@@ -9,16 +9,16 @@
     margin: 100px auto 0;
 
     border: 1px solid rgba(0, 0, 0, 0.274);
-  }
+}
 
-  .grid-container {
+.grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
     grid-gap: 10px;
     padding: 10px;
-  }
+}
   
-  .grid-container > div {
+.grid-container > div {
     border-radius: 10px;
     bottom: 0;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%), 0 0 0 1px rgb(0 0 0 / 8%);
@@ -31,14 +31,14 @@
     font-size: 10px;
     height: 180px;
 
-  }
+}
   
-  .title {
+.title {
     margin-top: 10px;
     margin-bottom: 10px;
-  }
+}
 
-  .button {
+.button {
     background-color: #f85103;;
     border: none;
     color: white;
