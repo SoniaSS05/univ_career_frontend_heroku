@@ -1,5 +1,5 @@
 import './University.css';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 //To use modal windows, it installed: npm i @material-ui/core
 import {Modal, TextField, Button} from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -76,7 +76,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 
 
-export default function StatesEU({univs}) {
+export default function StatesEU({univs, revs}) {
     console.log(univs);
     const styles = useStyles();
     const states = ['New Mexico','Florida', 'New York', 'Texas', 'Illinois', 'Colorado','Nebraska', 'New York'];
@@ -84,11 +84,19 @@ export default function StatesEU({univs}) {
     const [datasingle, setDatasingle] = useState({
         name: ""
     });
+    const [reviewsingle, setReviewsingle] = useState({
+        comment: ""
+    })
     const[univsSingle,setUnivsSingle] =  useState(null)
     const [modaldat, setModaldat] = useState(false);
+    const [modalrev, setModalrev] = useState(false);
 
     const openclosemodalDat=()=>{
         setModaldat(!modaldat)
+    }
+
+    const openclosemodalRev=()=>{
+        setModalrev(!modalrev)
     }
 
 //Display Data State's Universities
@@ -100,17 +108,13 @@ export default function StatesEU({univs}) {
         openclosemodalDat();
     }
 
-    function handleComments(uni){
-        alert(uni);
-    }
-
     let displayData=''
 
-    if(modaldat){console.log('DATASINGLE');
+    if(modaldat){
         displayData= (
             <div className={styles.modal}>
-                <h2 className="h2margin">{univsSingle}</h2>
-                    <td className="colmargin" >
+                <h2>{univsSingle}</h2>
+                    <td>
                         {datasingle.map((tp) =>
                             <tr>{tp.name} <button className="button" onClick={() => handleComments(tp.id)}>Comments</button></tr>
                         )}
@@ -125,6 +129,34 @@ export default function StatesEU({univs}) {
     }
     //End Display Data State's Universities
 
+    //Display Data Review
+
+    function handleComments(rev){
+        const reviewfilter = revs.filter((revi) => revi.university_id == rev);
+        setReviewsingle(reviewfilter);
+        openclosemodalRev();
+    }
+    let displayRev=''
+
+    if(modalrev){
+        displayRev= (
+            <div className={styles.modal}>
+                <h2 className="title">Comments</h2>
+                    <table className={styles.tableHeaderCell}>
+                        <td className={styles.tableHeaderCell}>
+                            {reviewsingle.map((tp) =>
+                                <tr className={styles.tableHeaderCell}>{tp.comment}</tr>
+                            )}
+                        </td>
+                    </table>
+               
+                <div align="right">  
+                    <Button color="Primary" onClick={()=>openclosemodalRev()}>CLOSE</Button>
+                </div>
+            </div>
+        )
+    }
+    //End Display Data Review
 
     const state_single = states.map((st)=>{
         return (
@@ -140,6 +172,7 @@ export default function StatesEU({univs}) {
         <div className="grid-container">
             {state_single}
             <Modal  open={modaldat}  onclose={openclosemodalDat}>{displayData}</Modal>
+            <Modal  open={modalrev}  onclose={openclosemodalRev}>{displayRev}</Modal>
         </div>
     )
 }
