@@ -3,7 +3,7 @@ import React, {useState } from "react";
 import ReactScrollableFeed from 'react-scrollable-feed';
 
 
-export default function Review({univs, revs}) {
+export default function Review({univs, revs, delReview}) {
 
     const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     //University ComboBox
@@ -53,7 +53,7 @@ export default function Review({univs, revs}) {
                                         <p style={{backgroundColor: i % 2 == 0?  'whitesmoke':'white', minHeight:'50px'}} key={i}>{tp.comment}</p>
                                     </td>
                                     <td style={{ backgroundColor: i % 2 == 0?  'whitesmoke':'white'}} key={i}>
-                                        <button className='butt'>Delete</button>
+                                        <button className='butt' onClick={()=>delReview(tp)}>Delete</button>
                                     </td>
                                     <td style={{ backgroundColor: i % 2 == 0?  'whitesmoke':'white'}} key={i} >
                                     <button className='butt'>Update</button>

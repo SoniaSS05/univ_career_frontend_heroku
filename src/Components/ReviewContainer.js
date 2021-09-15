@@ -20,11 +20,17 @@ export default function ReviewContainer() {
       .then (json => setRevs(json))
   },[])
 
-  
+  function delReview(review){
+    fetch(BASE_URL + `reviews/${review.id}`, {
+      method: "DELETE",
+    });
+    const updReviews = revs.filter((filreviews) => filreviews.id != review.id);
+    setRevs(updReviews);
+  }
 
   function alluniv(){
     return (
-      <Review univs={univs}  revs={revs}/>
+      <Review univs={univs}  revs={revs} delReview={delReview}/>
     )
   }
   
