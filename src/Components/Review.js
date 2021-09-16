@@ -1,27 +1,33 @@
 import './Review.css'
 import React, {useState } from "react";
+import DisplayReview from './DisplayReview.js'
 import ReactScrollableFeed from 'react-scrollable-feed';
 
 
 export default function Review({univs, revs, delReview}) {
 
-    const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-    //University ComboBox
-    const[revsfilt, setRevsfilt] = useState([])
 
-    function getunirev(id){
-        revs.map((t) => console.log('hola ' + t.university_id))
-        const filtunrev = revs.filter(filreg => filreg.university_id == id);
-        setRevsfilt(filtunrev);
+    //University ComboBox
+    const[universityId, setUniversityId] = useState(null)
+    const[universityName, setUniversityName] = useState(null)
+
+    function filteredReviews(){
+        console.log(revs)
+        console.log(universityId)
+        const filterrev = revs.filter(review => review.university_id == universityId)
+        console.log('Reviews')
+        console.log(filterrev)
+        return (
+           <DisplayReview filterrev={filterrev} delReview = {delReview} />
+        )
     }
 
 
-    const[tituniv,setTituniv]= useState('');
     const onChangeComboUniv = (e) =>{
         const selvalueid= e.target.value;
         let index = e.target.selectedIndex; //get text of selected option
-        setTituniv(e.target.options[index].text);//get text of selected option
-        getunirev(selvalueid);
+        setUniversityName(e.target.options[index].text);//get text of selected option
+        setUniversityId(selvalueid);
     }
 
     return(
@@ -40,31 +46,9 @@ export default function Review({univs, revs, delReview}) {
                     </td>
                 </tr>
             </div>
-            <div> 
-                <h1 className="title">{tituniv}</h1>
-            </div>
-            <div className="scrollstyle">    
-                <ReactScrollableFeed >
-                    {revsfilt.map((tp,i) => {
-                        return(
-                            <div>
-                                <tr>
-                                    <td className="comrow">
-                                        <p style={{backgroundColor: i % 2 == 0?  'whitesmoke':'white', minHeight:'50px'}} key={i}>{tp.comment}</p>
-                                    </td>
-                                    <td style={{ backgroundColor: i % 2 == 0?  'whitesmoke':'white'}} key={i}>
-                                        <button className='butt' onClick={()=>delReview(tp)}>Delete</button>
-                                    </td>
-                                    <td style={{ backgroundColor: i % 2 == 0?  'whitesmoke':'white'}} key={i} >
-                                    <button className='butt'>Update</button>
-                                    </td>
-                                </tr>
-                            </div>
-                        )
-                        })
-                    }
-                </ReactScrollableFeed>
-            </div>  
+           {universityId && filteredReviews()}
+
+
         </div>
     )
 }
