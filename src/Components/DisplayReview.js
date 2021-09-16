@@ -1,15 +1,105 @@
 import './Review.css';
 import React, {useState } from "react";
 import ReactScrollableFeed from 'react-scrollable-feed';
+import {Modal, TextField, Button, Box} from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import {
+       Table,
+       TableBody, 
+       TableCell, 
+       TableContainer, 
+       TableHead, 
+       TableRow, 
+       Paper
+} from '@material-ui/core';
 
+//Table style
+const useStyles = makeStyles((theme) => ({
+    modal:{
+        position: 'relative',
+        width: 400,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxshadow: theme.shadows[5],
+        padding: theme.spacing(2,4,3),
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
+    },
+    iconos:{
+        cursor: 'pointer'
+    },
+    inputMaterial:{
+        width: '100%'
+    },
+    table:{
+        marginLeft: '200',
+    },
+    tableContainer:{
+        borderRadius: 30    
+    },
+    tableHeaderCell:{
+        fontWeight: 'bold',
+        width: '500px'  
+    }
+
+}))
+
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    }
+}))(TableRow);
+
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: '#f85103',
+      textAlign: 'center',
+      color: 'black',
+      fontWeight: 'bold',
+      fontSize: 30,
+      width: 300
+    },
+    body: {
+      fontSize: 20,
+      width: 300,
+      height:50
+    },
+}))(TableCell);
+
+//End Table Style
 
 export default function DisplayReview({filterrev, delReview, universityName, updateReview}) {
 
-
+const styles = useStyles();
 //Display  Data One Review
 const [dataUpdReview,setdataUpdReview]= useState({
     comment: ""
 })
+
+ //Modal Control Open Close 
+const [modalReview, setmodalReview] = useState(false);
+const openclosemodalReview=()=>{
+   setmodalReview(!modalReview)
+}
+
+
+
+//Update Review
+let bodyUpdReview=''
+if (modalReview){
+    bodyUpdReview = (
+        <div className={styles.modal}>
+            <h3>Update Review</h3>
+        </div>
+    )
+}
+
+//End Modal Control  Open Close 
+
 
 //Modal Update Review
 //Get data to update
@@ -19,9 +109,10 @@ const [dataUpdReview,setdataUpdReview]= useState({
  //   setuDatasinglePlayer({...updatevalue})
  //}
 
-function handleUpdateReview(id){
+function handleUpdateReview(review){
     //event.preventDefault();
-    console.log(id);
+    console.log(review);
+    openclosemodalReview();
 
     //updateReview(udatasingleplayer);
     //openclosemodalUpplay();
@@ -29,7 +120,8 @@ function handleUpdateReview(id){
 //End Update Player
 
 
-
+console.log('modal')
+console.log(modalReview)
 
     return(
         <div>
@@ -57,7 +149,10 @@ function handleUpdateReview(id){
                         })
                     }
                 </ReactScrollableFeed>
+                <Modal  open={modalReview}  onclose={openclosemodalReview}>{bodyUpdReview}</Modal>
             </div>
+
+            
         </div>
     )
 
