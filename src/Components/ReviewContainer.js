@@ -28,9 +28,37 @@ export default function ReviewContainer() {
     setRevs(updReviews);
   }
 
+
+  function updateReview(upreview){
+    const config = {
+      method: "PATCH",
+      headers: {
+        "Accept":"application/json",
+        "Content-type":  "application/json"
+      },
+      body: JSON.stringify(upreview)
+    }
+    let urlComplete = BASE_URL +  `review/${upreview.id}`
+    fetch(urlComplete,config)
+      .then(response => response.json())
+      .then(updReview =>{
+        console.log(updReview);
+        const updRev = revs.map(revm => {
+          if(revm.id === updReview.id){
+            return updReview;
+          }
+          return revm;
+        })   
+
+        setRevs(updRev);
+      })
+    } 
+
+
+
   function alluniv(){
     return (
-      <Review univs={univs}  revs={revs} delReview={delReview}/>
+      <Review univs={univs}  revs={revs} delReview={delReview} updateReview={updateReview}/>
     )
   }
   

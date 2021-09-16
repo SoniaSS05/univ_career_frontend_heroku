@@ -4,7 +4,7 @@ import DisplayReview from './DisplayReview.js'
 import ReactScrollableFeed from 'react-scrollable-feed';
 
 
-export default function Review({univs, revs, delReview}) {
+export default function Review({univs, revs, delReview, updateReview}) {
 
 
     //University ComboBox
@@ -12,13 +12,9 @@ export default function Review({univs, revs, delReview}) {
     const[universityName, setUniversityName] = useState(null)
 
     function filteredReviews(){
-        console.log(revs)
-        console.log(universityId)
         const filterrev = revs.filter(review => review.university_id == universityId)
-        console.log('Reviews')
-        console.log(filterrev)
         return (
-           <DisplayReview filterrev={filterrev} delReview = {delReview} />
+           <DisplayReview filterrev={filterrev} delReview={delReview} universityName={universityName} updateReview={updateReview}/>
         )
     }
 
@@ -46,6 +42,7 @@ export default function Review({univs, revs, delReview}) {
                     </td>
                 </tr>
             </div>
+
            {universityId && filteredReviews()}
 
 
