@@ -69,8 +69,8 @@ const StyledTableCell = withStyles((theme) => ({
       height:50
     },
 }))(TableCell);
-
 //End Table Style
+
 
 export default function DisplayReview({filterrev, delReview, universityName, updateReview}) {
 
@@ -87,13 +87,42 @@ const openclosemodalReview=()=>{
 }
 
 
+function handleChangeUpd(event) {
+    console.log("EVENT")
+    console.log(event.target.value)
+    const updatevalue={...dataUpdReview}
+    console.log('updatevalue')
+    console.log(updatevalue)
+    
+
+    updatevalue[event.target.name] = event.target.value
+    console.log('updatevalue')
+    console.log(updatevalue)
+    setdataUpdReview({...updatevalue})
+ }
+
+function handleSubmit(event){
+    event.preventDefault();
+    updateReview(dataUpdReview);
+    openclosemodalReview();
+}
 
 //Update Review
 let bodyUpdReview=''
 if (modalReview){
     bodyUpdReview = (
         <div className={styles.modal}>
-            <h3>Update Review</h3>
+            <h3>Update Review</h3>            
+            <form  onSubmit={handleSubmit}>
+                <label>
+                <input type="text" name="comment" defaultValue={dataUpdReview.comment} onChange={handleChangeUpd}/>     
+                </label> 
+                <input type="submit" value="Submit"/>
+            </form>
+            <div align="right">  
+                <Button color="Primary" onClick={()=>openclosemodalReview()}>CLOSE</Button>
+            </div>
+           
         </div>
     )
 }
@@ -112,6 +141,8 @@ if (modalReview){
 function handleUpdateReview(review){
     //event.preventDefault();
     console.log(review);
+    setdataUpdReview(review);
+
     openclosemodalReview();
 
     //updateReview(udatasingleplayer);

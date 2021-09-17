@@ -30,6 +30,8 @@ export default function ReviewContainer() {
 
 
   function updateReview(upreview){
+    console.log("ENTRE A UPDATE")
+    console.log(upreview)
     const config = {
       method: "PATCH",
       headers: {
@@ -38,7 +40,7 @@ export default function ReviewContainer() {
       },
       body: JSON.stringify(upreview)
     }
-    let urlComplete = BASE_URL +  `review/${upreview.id}`
+    let urlComplete = BASE_URL +  `reviews/${upreview.id}`
     fetch(urlComplete,config)
       .then(response => response.json())
       .then(updReview =>{
