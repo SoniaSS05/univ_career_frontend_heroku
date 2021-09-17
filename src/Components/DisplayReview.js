@@ -1,4 +1,5 @@
 import './Review.css';
+import './DisplayReview.css';
 import React, {useState } from "react";
 import ReactScrollableFeed from 'react-scrollable-feed';
 import {Modal, TextField, Button, Box} from '@material-ui/core';
@@ -72,12 +73,19 @@ const StyledTableCell = withStyles((theme) => ({
 //End Table Style
 
 
-export default function DisplayReview({filterrev, delReview, universityName, updateReview}) {
+export default function DisplayReview({filterrev, delReview, universityName, universityId, updateReview, createReview}) {
 
 const styles = useStyles();
 //Display  Data One Review
 const [dataUpdReview,setdataUpdReview]= useState({
-    comment: ""
+    comment: ''
+})
+
+const [dataCreReview,setdataCreReview]= useState({
+    comment: '',
+    university_id:'',
+    user_id: ''
+
 })
 
  //Modal Control Open Close 
@@ -86,24 +94,44 @@ const openclosemodalReview=()=>{
    setmodalReview(!modalReview)
 }
 
+const [modalCreateReview, setmodalCreateReview] = useState(false);
+
+const openclosemodalCreateReview=()=>{
+   setmodalCreateReview(!modalCreateReview)
+}
 
 function handleChangeUpd(event) {
-    console.log("EVENT")
-    console.log(event.target.value)
     const updatevalue={...dataUpdReview}
-    console.log('updatevalue')
-    console.log(updatevalue)
-    
-
     updatevalue[event.target.name] = event.target.value
-    console.log('updatevalue')
-    console.log(updatevalue)
     setdataUpdReview({...updatevalue})
  }
 
 function handleSubmit(event){
     event.preventDefault();
     updateReview(dataUpdReview);
+    openclosemodalReview();
+}
+
+//Create Review
+function handleChangeCre(event) {
+    const createvalue={...dataCreReview}
+
+
+
+
+
+    
+    console.log('changecre')
+    console.log(event.target)
+    createvalue[event.target.name] = event.target.value
+    createvalue[createvalue.university_id] = universityId
+    createvalue[createvalue.user_id] = 1
+    setdataCreReview({...dataCreReview})
+ }
+
+function handleCreateSubmit(event){
+    event.preventDefault();
+    createReview(dataCreReview);
     openclosemodalReview();
 }
 
@@ -114,45 +142,43 @@ if (modalReview){
         <div className={styles.modal}>
             <h3>Update Review</h3>            
             <form  onSubmit={handleSubmit}>
-                <label>
                 <input type="text" name="comment" defaultValue={dataUpdReview.comment} onChange={handleChangeUpd}/>     
-                </label> 
                 <input type="submit" value="Submit"/>
             </form>
             <div align="right">  
                 <Button color="Primary" onClick={()=>openclosemodalReview()}>CLOSE</Button>
             </div>
+        </div>
+    )
+}
+
+let bodyCreReview='';
+if(modalCreateReview){
+    bodyCreReview = (
+        <div className={styles.modal}>
+            <h3>Create Review</h3>            
+            <form  onSubmit={handleCreateSubmit}>
+                <input type="text" name="comment"  onChange={handleChangeCre}/>     
+                <input type="submit" value="Submit"/>
+            </form>
+            <div align="right">  
+                <Button color="Primary" onClick={()=>openclosemodalCreateReview()}>CLOSE</Button>
+            </div>
            
         </div>
     )
+
 }
 
 //End Modal Control  Open Close 
 
 
-//Modal Update Review
-//Get data to update
-//function handleChangeUpd(event) {
-  //  const updatevalue={...udatasingleplayer}
-    //updatevalue[event.target.name] = event.target.value
- //   setuDatasinglePlayer({...updatevalue})
- //}
-
 function handleUpdateReview(review){
-    //event.preventDefault();
-    console.log(review);
     setdataUpdReview(review);
-
     openclosemodalReview();
-
-    //updateReview(udatasingleplayer);
-    //openclosemodalUpplay();
 }
-//End Update Player
+//End Update Review
 
-
-console.log('modal')
-console.log(modalReview)
 
     return(
         <div>
@@ -182,7 +208,8 @@ console.log(modalReview)
                 </ReactScrollableFeed>
                 <Modal  open={modalReview}  onclose={openclosemodalReview}>{bodyUpdReview}</Modal>
             </div>
-
+            <button className='but' onClick={()=>openclosemodalCreateReview()}>Create</button>
+            <Modal  open={modalCreateReview}  onclose={openclosemodalCreateReview}>{bodyCreReview}</Modal>
             
         </div>
     )

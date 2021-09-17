@@ -56,11 +56,30 @@ export default function ReviewContainer() {
       })
     } 
 
+  function createReview(newReview){
+    console.log('ENTRE A CREATE')
+    console.log(newReview)
+    const config = {
+      method: "POST",
+      headers: {
+        "Content-type":  "application/json",
+      },
+      body: JSON.stringify(newReview)
+    }
+    let urlComplete = BASE_URL + 'reviews'   
+    fetch(urlComplete,config)
+      .then(response => response.json())
+      .then(newReview =>{
+        const newReviews =[...revs, newReview];
+        setRevs(newReviews);
+      })
+
+  }
 
 
   function alluniv(){
     return (
-      <Review univs={univs}  revs={revs} delReview={delReview} updateReview={updateReview}/>
+      <Review univs={univs}  revs={revs} delReview={delReview} updateReview={updateReview} createReview={createReview}/>
     )
   }
   
