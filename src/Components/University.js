@@ -1,5 +1,6 @@
 import './University.css';
 import React, {useState} from 'react';
+import ReactScrollableFeed from 'react-scrollable-feed';
 //To use modal windows, it installed: npm i @material-ui/core
 import {Modal, TextField, Button} from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -12,7 +13,7 @@ import {
        TableRow, 
        Paper
 } from '@material-ui/core';
-import ReactScrollableFeed from 'react-scrollable-feed';
+
 
 
 //Table style
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         backgroundColor: 'whitesmoke',
         margin: '0px 10px 0px 10px',
-        paddingLeft: '30px'
+        paddingLeft: '5px'
     }
 
 }))
@@ -103,14 +104,25 @@ export default function StatesEU({univs, revs}) {
     if(modaldat){
         displayData= (
             <div className={styles.modal}>
-                <h2>{univsSingle}</h2>
-                    <td>
-                        {datasingle.map((tp) =>
-                            <tr>{tp.name} <button className="button" onClick={() => handleComments(tp.id)}>Comments</button></tr>
-                        )}
-                    </td>
-                    <td>
-                </td>
+                <h2 className="tituniv">{univsSingle}</h2>
+                <div className="slstyle">   
+                    <ReactScrollableFeed >
+                         <tr>
+                            {datasingle.map((tp,i) => {
+                                return(
+                                <tr style={{backgroundColor: i % 2 == 0?  'whitesmoke':'white', minHeight:'50px'}} key={i}>
+                                    <td >{tp.name}</td>
+                                    <td><button className="button" onClick={() => handleComments(tp.id)}>Comments</button></td>
+                                </tr>)
+                            })}
+                        </tr>
+                    </ReactScrollableFeed >
+
+
+
+                   
+               
+                </div>
                 <div align="right">  
                     <Button color="Primary" onClick={()=>openclosemodalDat()}>CLOSE</Button>
                 </div>

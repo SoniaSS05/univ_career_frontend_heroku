@@ -69,3 +69,14 @@
   border-bottom: solid 1px black;
   padding: 20px;
 }
+
+.tituniv{
+  color:black;
+  text-align: center;
+  font-size: 30px;
+  padding: 20px;
+}
+
+.univrow{
+  width: 370px;
+}
