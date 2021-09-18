@@ -75,109 +75,103 @@ const StyledTableCell = withStyles((theme) => ({
 
 export default function DisplayReview({filterrev, delReview, universityName, universityId, updateReview, createReview}) {
 
-const styles = useStyles();
-//Display  Data One Review
-const [dataUpdReview,setdataUpdReview]= useState({
-    comment: ''
-})
+    const styles = useStyles();
+    //Display  Data One Review
+    const [dataUpdReview,setdataUpdReview]= useState({
+        comment: ''
+    })
 
-const [dataCreReview,setdataCreReview]= useState({
-    comment: '',
-    university_id:'',
-    user_id: ''
+    const [dataCreReview,setdataCreReview]= useState({
+        comment: '',
+        university_id: '',
+        user_id: ''
+    })
 
-})
+    //Modal Control Open Close 
+    const [modalReview, setmodalReview] = useState(false);
+    const openclosemodalReview=()=>{
+        setmodalReview(!modalReview)
+    }
 
- //Modal Control Open Close 
-const [modalReview, setmodalReview] = useState(false);
-const openclosemodalReview=()=>{
-   setmodalReview(!modalReview)
-}
+    const [modalCreateReview, setmodalCreateReview] = useState(false);
 
-const [modalCreateReview, setmodalCreateReview] = useState(false);
+    const openclosemodalCreateReview=()=>{
+        setmodalCreateReview(!modalCreateReview)
+    }
 
-const openclosemodalCreateReview=()=>{
-   setmodalCreateReview(!modalCreateReview)
-}
+    function handleChangeUpd(event) {
+        const updatevalue={...dataUpdReview}
+        updatevalue[event.target.name] = event.target.value
+        setdataUpdReview({...updatevalue})
+    }
 
-function handleChangeUpd(event) {
-    const updatevalue={...dataUpdReview}
-    updatevalue[event.target.name] = event.target.value
-    setdataUpdReview({...updatevalue})
- }
+    function handleSubmit(event){
+        event.preventDefault();
+        updateReview(dataUpdReview);
+        openclosemodalReview();
+    }
 
-function handleSubmit(event){
-    event.preventDefault();
-    updateReview(dataUpdReview);
-    openclosemodalReview();
-}
+    //Create Review
+    function handleChangeCre(event) {
+        const createvalue={...dataCreReview};
+        createvalue['comment'] = event.target.value;
+        createvalue['university_id'] = universityId;
+        createvalue['user_id'] = 1;
+        setdataCreReview({...createvalue});
+        setmodalReview(false);
+    }
 
-//Create Review
-function handleChangeCre(event) {
-    const createvalue={...dataCreReview}
+    function handleCreateSubmit(event){
+        event.preventDefault();
+        createReview(dataCreReview);
+        setmodalReview(false);
+        openclosemodalCreateReview();
+    }
 
+    function handleUpdateReview(review){
+        setdataUpdReview(review);
+        openclosemodalReview();
+    }
 
-
-
-
-    
-    console.log('changecre')
-    console.log(event.target)
-    createvalue[event.target.name] = event.target.value
-    createvalue[createvalue.university_id] = universityId
-    createvalue[createvalue.user_id] = 1
-    setdataCreReview({...dataCreReview})
- }
-
-function handleCreateSubmit(event){
-    event.preventDefault();
-    createReview(dataCreReview);
-    openclosemodalReview();
-}
-
-//Update Review
-let bodyUpdReview=''
-if (modalReview){
-    bodyUpdReview = (
-        <div className={styles.modal}>
-            <h3>Update Review</h3>            
-            <form  onSubmit={handleSubmit}>
-                <input type="text" name="comment" defaultValue={dataUpdReview.comment} onChange={handleChangeUpd}/>     
-                <input type="submit" value="Submit"/>
-            </form>
-            <div align="right">  
-                <Button color="Primary" onClick={()=>openclosemodalReview()}>CLOSE</Button>
+    let bodyCreReview='';
+    if(modalCreateReview){
+        bodyCreReview = (
+            <div className={styles.modal}>
+                <h3>Create Review</h3>            
+                <form  onSubmit={handleCreateSubmit}>
+                    <input type="text" name="comment" onChange={handleChangeCre}/>     
+                    <input type="submit" value="Submit"/>
+                </form>
+                <div align="right">  
+                    <Button color="Primary" onClick={()=>openclosemodalCreateReview()}>CLOSE</Button>
+                </div>
+            
             </div>
-        </div>
-    )
-}
+        )
 
-let bodyCreReview='';
-if(modalCreateReview){
-    bodyCreReview = (
-        <div className={styles.modal}>
-            <h3>Create Review</h3>            
-            <form  onSubmit={handleCreateSubmit}>
-                <input type="text" name="comment"  onChange={handleChangeCre}/>     
-                <input type="submit" value="Submit"/>
-            </form>
-            <div align="right">  
-                <Button color="Primary" onClick={()=>openclosemodalCreateReview()}>CLOSE</Button>
+    }
+
+    //End Modal Control  Open Close 
+
+    //Update Review
+    let bodyUpdReview=''
+    if (modalReview){
+        bodyUpdReview = (
+            <div className={styles.modal}>
+                <h3>Update Review</h3>            
+                <form  onSubmit={handleSubmit}>
+                    <input type="text" name="comment" defaultValue={dataUpdReview.comment} onChange={handleChangeUpd}/>     
+                    <input type="submit" value="Submit"/>
+                </form>
+                <div align="right">  
+                    <Button color="Primary" onClick={()=>openclosemodalReview()}>CLOSE</Button>
+                </div>
             </div>
-           
-        </div>
-    )
+        )
+    }
 
-}
-
-//End Modal Control  Open Close 
-
-
-function handleUpdateReview(review){
-    setdataUpdReview(review);
-    openclosemodalReview();
-}
-//End Update Review
+   
+ 
 
 
     return(
