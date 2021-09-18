@@ -27,23 +27,21 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         transform: 'translate(-50%, -50%)'
     },
-    iconos:{
-        cursor: 'pointer'
+    tits:{
+        padding:'10px'
     },
-    inputMaterial:{
-        width: '100%'
+    inp:{
+        height: '50px',
+        width: '350px',
+        textAlign: 'justify',
+        marginRight: '10px',
+        marginBottom: '10px'
     },
-    table:{
-        marginLeft: '200',
-    },
-    tableContainer:{
-        borderRadius: 30    
-    },
-    tableHeaderCell:{
-        fontWeight: 'bold',
-        width: '500px'  
-    }
+    sub:{
+        padding: '6px',
+        marginLeft: '150px'
 
+    }
 }))
 
 
@@ -137,10 +135,10 @@ export default function DisplayReview({filterrev, delReview, universityName, uni
     if(modalCreateReview){
         bodyCreReview = (
             <div className={styles.modal}>
-                <h3>Create Review</h3>            
+                <h3 className={styles.tits}>Create Review</h3>            
                 <form  onSubmit={handleCreateSubmit}>
-                    <input type="text" name="comment" onChange={handleChangeCre}/>     
-                    <input type="submit" value="Submit"/>
+                    <textarea className={styles.inp}  type="text" name="comment" onChange={handleChangeCre}/>     
+                    <input className={styles.sub} type="submit" value="Submit"/>
                 </form>
                 <div align="right">  
                     <Button color="Primary" onClick={()=>openclosemodalCreateReview()}>CLOSE</Button>
@@ -158,10 +156,10 @@ export default function DisplayReview({filterrev, delReview, universityName, uni
     if (modalReview){
         bodyUpdReview = (
             <div className={styles.modal}>
-                <h3>Update Review</h3>            
-                <form  onSubmit={handleSubmit}>
-                    <input type="text" name="comment" defaultValue={dataUpdReview.comment} onChange={handleChangeUpd}/>     
-                    <input type="submit" value="Submit"/>
+                <h3 className={styles.tits}>Update Review</h3>            
+                <form onSubmit={handleSubmit}>
+                    <textarea className={styles.inp} type="text" name="comment" defaultValue={dataUpdReview.comment} onChange={handleChangeUpd}/>     
+                    <input className={styles.sub} type="submit" value="Submit"/>
                 </form>
                 <div align="right">  
                     <Button color="Primary" onClick={()=>openclosemodalReview()}>CLOSE</Button>
@@ -169,10 +167,6 @@ export default function DisplayReview({filterrev, delReview, universityName, uni
             </div>
         )
     }
-
-   
- 
-
 
     return(
         <div>

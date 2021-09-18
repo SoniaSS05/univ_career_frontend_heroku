@@ -13,8 +13,9 @@
 
 
 .title{
-    color: #f85103;
+    color:black;
     text-align: center;
+    font-size: 35px;
 }
 
 .scrollstyle{
@@ -26,10 +27,6 @@
     padding-left: 30px;
 }
 
-.comrow{
-    margin-right: 20px;
-    width: 300px;
-}
 
 .butt {
     background-color: #f85103;;
