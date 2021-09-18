@@ -12,8 +12,7 @@ import {
        TableRow, 
        Paper
 } from '@material-ui/core';
-
- 
+import ReactScrollableFeed from 'react-scrollable-feed';
 
 
 //Table style
@@ -29,22 +28,13 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         transform: 'translate(-50%, -50%)'
     },
-    iconos:{
-        cursor: 'pointer'
-    },
-    inputMaterial:{
-        width: '100%'
-    },
-    table:{
-        marginLeft: '200',
-     
-    },
-    tableContainer:{
-        borderRadius: 30    
-    },
-    tableHeaderCell:{
-        fontWeight: 'bold',
-        width: '500px'  
+    slstyle:{
+        overflowY:'scroll',
+        height:'450px',
+        textAlign: 'left',
+        backgroundColor: 'whitesmoke',
+        margin: '0px 10px 0px 10px',
+        paddingLeft: '30px'
     }
 
 }))
@@ -139,17 +129,19 @@ export default function StatesEU({univs, revs}) {
     let displayRev=''
 
     if(modalrev){
+        console.log('comen')
+        console.log(reviewsingle)
         displayRev= (
             <div className={styles.modal}>
                 <h2 className="title">Comments</h2>
-                    <table className={styles.tableHeaderCell}>
-                        <td className={styles.tableHeaderCell}>
-                            {reviewsingle.map((tp) =>
-                                <tr className={styles.tableHeaderCell}>{tp.comment}</tr>
-                            )}
-                        </td>
-                    </table>
-               
+                <div className={styles.slstyle}>    
+                    <ReactScrollableFeed >
+                        {reviewsingle.map((tp,i) =>
+                                <tr style={{height: '50px', paddingTop: '120px', backgroundColor: i % 2 == 0?  'whitesmoke':'white'}} key={i}>{tp.comment}</tr>
+                        )}
+                    </ReactScrollableFeed>
+
+                </div>
                 <div align="right">  
                     <Button color="Primary" onClick={()=>openclosemodalRev()}>CLOSE</Button>
                 </div>
