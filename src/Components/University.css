@@ -7,7 +7,6 @@
     height: 300px;
     background: #f1f1f1;
     margin: 100px auto 0;
-
     border: 1px solid rgba(0, 0, 0, 0.274);
 }
 
@@ -17,8 +16,30 @@
     grid-gap: 10px;
     padding: 10px;
 }
+
+.itemax2 {
+  grid-column-start: 6;
+  display:flex;
+}
+
+.itemax5{
+  grid-column-start: 5;
+  display:flex;
+}
+
+.itemax7{
+  grid-column-start: 4;
+  display:flex;
+}
+
+.itemax8{
+  grid-column-start: 1;
+  display:flex;
   
-.grid-container > div {
+}
+  
+.sqstate {
+    margin: 0px 20px 0px 20px;
     border-radius: 10px;
     bottom: 0;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%), 0 0 0 1px rgb(0 0 0 / 8%);
@@ -52,8 +73,10 @@
 }
 
 .imagestate{
-  width:80px;
-  height:80px;
+  /*width:80px;*/
+  width: 70%;
+  height: 70%;
+
 }
 
 .col{

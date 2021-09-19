@@ -115,8 +115,6 @@ export default function StatesEU({univs, revs}) {
         displayData= (
             <div className={styles.modal}>
                 <h2 className="tituniv">{univsSingle}</h2>
-                 
-
                 <div className="slstyle">   
                     <ReactScrollableFeed >
                          <tr>
@@ -169,14 +167,33 @@ export default function StatesEU({univs, revs}) {
     }
     //End Display Data Review
     const states = allstates.filter(sta => sta[0] == letter );
+    let lenStates = states.length;
+    var dynamicClassName = '';
+    switch (lenStates) {
+        case 1:
+        case 2:
+            dynamicClassName = "itemax2";
+            break;
+        case 3:
+        case 4:
+        case 5:
+            dynamicClassName = "itemax5";
+            break;
+        case 6:
+        case 7:
+            dynamicClassName = "itemax7";
+            break;
+        case 8:
+            dynamicClassName = "itemax8";
+            break;
+    }
     const state_single = states.map((st)=>{
         return (
-        <div >
-            <div onClick={() => handleState(st)}>
-                <h1>{st}</h1>
-                <img className= "imagestate" src="./images/NewMexico.png" ></img>
-            </div>
-        </div>)
+                <div className="sqstate" onClick={() => handleState(st)}>
+                    <h1>{st}</h1>
+                    <img className= "imagestate" src="./images/NewMexico.png" ></img>
+                </div>
+            )
     })
 
     return(
@@ -184,7 +201,11 @@ export default function StatesEU({univs, revs}) {
             <div>
                 <Alphabet setLetter={setLetter} />
             </div>
-            <div className="grid-container">{state_single}</div>
+            <div className="grid-container">
+                <div className={dynamicClassName}>
+                    {state_single}
+                </div>
+            </div>
             <Modal  open={modaldat}  onclose={openclosemodalDat}>{displayData}</Modal>
             <Modal  open={modalrev}  onclose={openclosemodalRev}>{displayRev}</Modal>
         </div>
