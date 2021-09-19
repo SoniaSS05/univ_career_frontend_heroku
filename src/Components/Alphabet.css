@@ -1,0 +1,23 @@
+.squareAlp{
+    margin:0px 4px 20px 4px;
+    padding:10px;
+    width: 20px;
+    height: 12px;
+    border: 1px solid gray;
+    border-style: outset;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.squareAlp:hover {background-color:  #f85103}
+
+.squareAlp:active {
+  background-color:  #f85103;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+
+.mleft{
+    margin-left: 6px;
+}

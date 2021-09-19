@@ -13,7 +13,7 @@ import {
        TableRow, 
        Paper
 } from '@material-ui/core';
-
+import Alphabet from './Alphabet'
 
 
 //Table style
@@ -68,9 +68,19 @@ const StyledTableCell = withStyles((theme) => ({
 
 
 export default function StatesEU({univs, revs}) {
+ 
     console.log(univs);
     const styles = useStyles();
-    const states = ['New Mexico','Florida', 'New York', 'Texas', 'Illinois', 'Colorado','Nebraska', 'New York'];
+    const allstates = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 
+                       'Dakota del Norte', 'Dakota del Sur', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 
+                       'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 
+                       'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska',
+                        'Nevada', 'New Jersey', 'New York', 'New Hampshire', 'New México', 'North Carolina', 'Ohio',
+                        'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'Tennessee', 'Texas', 
+                        'Utah', 'Vermont', 'Virginia', 'Washington', 'Wisconsin', 'Wyoming'];  
+
+    const [letter, setLetter] = useState('A');
+
     const imageStates = ['../New Mexico.png']
     const [datasingle, setDatasingle] = useState({
         name: ""
@@ -90,7 +100,7 @@ export default function StatesEU({univs, revs}) {
         setModalrev(!modalrev)
     }
 
-//Display Data State's Universities
+    //Display Data State's Universities
 
     function handleState(st){
         const univfilter =  univs.filter((uns) => uns.location == st);
@@ -105,6 +115,8 @@ export default function StatesEU({univs, revs}) {
         displayData= (
             <div className={styles.modal}>
                 <h2 className="tituniv">{univsSingle}</h2>
+                 
+
                 <div className="slstyle">   
                     <ReactScrollableFeed >
                          <tr>
@@ -117,11 +129,6 @@ export default function StatesEU({univs, revs}) {
                             })}
                         </tr>
                     </ReactScrollableFeed >
-
-
-
-                   
-               
                 </div>
                 <div align="right">  
                     <Button color="Primary" onClick={()=>openclosemodalDat()}>CLOSE</Button>
@@ -161,7 +168,7 @@ export default function StatesEU({univs, revs}) {
         )
     }
     //End Display Data Review
-
+    const states = allstates.filter(sta => sta[0] == letter );
     const state_single = states.map((st)=>{
         return (
         <div >
@@ -173,8 +180,11 @@ export default function StatesEU({univs, revs}) {
     })
 
     return(
-        <div className="grid-container">
-            {state_single}
+        <div>
+            <div>
+                <Alphabet setLetter={setLetter} />
+            </div>
+            <div className="grid-container">{state_single}</div>
             <Modal  open={modaldat}  onclose={openclosemodalDat}>{displayData}</Modal>
             <Modal  open={modalrev}  onclose={openclosemodalRev}>{displayRev}</Modal>
         </div>
