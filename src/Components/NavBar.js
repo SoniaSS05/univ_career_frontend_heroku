@@ -21,7 +21,7 @@ function NavBar() {
                     </NavLink>
                 </div>
                 <div className="navopt">
-                    <NavLink  to="/">
+                    <NavLink  to="/CareerContainer">
                         Careers
                     </NavLink>
                 </div>
