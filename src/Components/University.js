@@ -66,7 +66,6 @@ const StyledTableCell = withStyles((theme) => ({
 //End Table Style
 
 
-
 export default function StatesEU({univs, revs}) {
  
     console.log(univs);
@@ -81,7 +80,9 @@ export default function StatesEU({univs, revs}) {
 
     const [letter, setLetter] = useState('A');
 
-    const imageStates = ['../New Mexico.png']
+   
+    const imageStates = ['Illinois.png', 'Florida.png'];
+
     const [datasingle, setDatasingle] = useState({
         name: ""
     });
@@ -167,6 +168,7 @@ export default function StatesEU({univs, revs}) {
     }
     //End Display Data Review
     const states = allstates.filter(sta => sta[0] == letter );
+    
     let lenStates = states.length;
     var dynamicClassName = '';
     switch (lenStates) {
@@ -187,11 +189,18 @@ export default function StatesEU({univs, revs}) {
             dynamicClassName = "itemax8";
             break;
     }
+
+  
     const state_single = states.map((st)=>{
+        let findst = st + '.png'
+        const indstate = imageStates.indexOf(findst);
+        console.log(indstate)
         return (
                 <div className="sqstate" onClick={() => handleState(st)}>
                     <h1>{st}</h1>
-                    <img className= "imagestate" src="./images/NewMexico.png" ></img>
+                   
+                    <img className= "imagestate" src={process.env.PUBLIC_URL + /images/ + imageStates[indstate]}></img>
+                   
                 </div>
             )
     })
