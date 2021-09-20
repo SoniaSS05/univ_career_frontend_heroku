@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Career from './Career.js'
 
-export default function ReviewContainer() {
+export default function CareerContainer() {
 
     const BASE_URL="http://127.0.0.1:3000/";
 
@@ -19,13 +19,11 @@ export default function ReviewContainer() {
         return (
           <Career careers={careers}/>
         )
-      }
+    }
       
       return (
         <div>
           {careers && allcar()}
         </div>
       )
-
-
 }

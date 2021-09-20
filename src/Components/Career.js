@@ -15,9 +15,7 @@ export default function Career({careers}) {
         setCareerId(selvalueid);
     }
 
-    function filteredCareer(){
-        
-    }
+ 
 
     return(
         <div className="comp">
@@ -35,7 +33,10 @@ export default function Career({careers}) {
                     </td>
                 </tr>
             </div>
-            {careerId && filteredCareer()}
+    
+
+
+
         </div>
     )
 }
