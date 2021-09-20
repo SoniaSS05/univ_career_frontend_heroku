@@ -1,9 +1,13 @@
 
 import React, {useState } from "react";
+import DisplayUniv from './DisplayUniv.js'
 
-
-export default function Career({careers}) {
-
+export default function Career({careers, univs}) {
+    
+console.log('filtrando careers')
+console.log(careers);
+console.log('filtrando univs')
+console.log(univs);
 
     const [careerId, setCareerId] = useState(null);
     const [careerName, setCareerName] = useState(null);
@@ -15,7 +19,17 @@ export default function Career({careers}) {
         setCareerId(selvalueid);
     }
 
- 
+    function filteredUnivCar(){
+       // const filtcar = careers.where(programs => {programs.univs.career.career_id == careerId } )
+       console.log('career Id')
+       console.log(careerId)
+      // const filtcar = univs.includes(careers).where(univs.careers.career_id == careerId)
+    
+        return (
+           <DisplayUniv />
+        )
+
+   }
 
     return(
         <div className="comp">
@@ -33,9 +47,8 @@ export default function Career({careers}) {
                     </td>
                 </tr>
             </div>
-    
 
-
+            {careerId && filteredUnivCar()}
 
         </div>
     )

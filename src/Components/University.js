@@ -81,7 +81,8 @@ export default function StatesEU({univs, revs}) {
     const [letter, setLetter] = useState('A');
 
    
-    const imageStates = ['Illinois.png', 'Florida.png'];
+    const imageStates = ['Illinois.png', 'Florida.png', 'Alaska.png', 'Arizona.png', 'Arkansas.png', 'Alabama.png',
+                         'Colorado.png'];
 
     const [datasingle, setDatasingle] = useState({
         name: ""

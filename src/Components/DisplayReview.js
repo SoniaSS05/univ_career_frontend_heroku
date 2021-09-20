@@ -114,7 +114,7 @@ export default function DisplayReview({filterrev, delReview, universityName, uni
         const createvalue={...dataCreReview};
         createvalue['comment'] = event.target.value;
         createvalue['university_id'] = universityId;
-        createvalue['user_id'] = 1;
+        createvalue['user_id'] = 21;
         setdataCreReview({...createvalue});
         setmodalReview(false);
     }

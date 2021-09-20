@@ -7,7 +7,7 @@ export default function ReviewContainer() {
   const[univs,setUnivs] =  useState(null)
   const[revs,setRevs] =  useState(null)
   
-
+ 
   useEffect(()=>{
       fetch(BASE_URL + 'universities')
         .then (res => res.json())
@@ -19,6 +19,9 @@ export default function ReviewContainer() {
       .then (res => res.json())
       .then (json => setRevs(json))
   },[])
+
+
+
 
   function delReview(review){
     fetch(BASE_URL + `reviews/${review.id}`, {
