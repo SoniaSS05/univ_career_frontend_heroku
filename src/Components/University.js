@@ -71,10 +71,10 @@ export default function StatesEU({univs, revs}) {
     console.log(univs);
     const styles = useStyles();
     const allstates = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 
-                       'Dakota del Norte', 'Dakota del Sur', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 
+                       'North Dakota', 'South Dakota', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 
                        'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 
                        'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska',
-                        'Nevada', 'New Jersey', 'New York', 'New Hampshire', 'New México', 'North Carolina', 'Ohio',
+                        'Nevada', 'New Jersey', 'New York', 'New Hampshire', 'New Mexico', 'North Carolina', 'Ohio',
                         'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'Tennessee', 'Texas', 
                         'Utah', 'Vermont', 'Virginia', 'Washington', 'Wisconsin', 'Wyoming'];  
 
@@ -82,7 +82,13 @@ export default function StatesEU({univs, revs}) {
 
    
     const imageStates = ['Illinois.png', 'Florida.png', 'Alaska.png', 'Arizona.png', 'Arkansas.png', 'Alabama.png',
-                         'Colorado.png'];
+                         'Colorado.png', 'California.png', 'New Mexico.png', 'Oklahoma.png', 'Idaho.png', 'Washington.png',
+                         'Wyoming.png', 'Kentucky.png', 'Connecticut.png', 'South Dakota.png', 'Utah.png', 'Missouri.png',
+                         'Ohio.png', 'Pennsylvania.png', 'Florida.png', 'Georgia.png', 'Indiana.png', 'Iowa.png', 'Kansas.png',
+                         'Delaware.png', 'North Dakota.png', 'North Carolina.png', 'Nebraska.png', 'New Hampshire.png', 'Nevada.png',
+                         'New Jersey.png', 'New York.png', 'Oregon.png', 'Rhode Island.png', 'South Carolina.png', 'Texas.png',
+                         'Tennessee.png', 'Virginia.png', 'Vermont.png', 'Wisconsin.png', 'Hawaii.png', 'Louisiana.png', 'Minnesota.png',
+                         'Massachusetts.png', 'Maryland.png', 'Mississippi.png', 'Maine.png', 'Michigan.png', 'Montana.png'];
 
     const [datasingle, setDatasingle] = useState({
         name: ""
@@ -195,7 +201,7 @@ export default function StatesEU({univs, revs}) {
     const state_single = states.map((st)=>{
         let findst = st + '.png'
         const indstate = imageStates.indexOf(findst);
-        console.log(indstate)
+
         return (
                 <div className="sqstate" onClick={() => handleState(st)}>
                     <h1>{st}</h1>

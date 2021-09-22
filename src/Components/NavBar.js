@@ -8,8 +8,8 @@ function NavBar() {
     <div >    
         <div>
             <div className="navbar">
-                <div className="logo">
-                    <h1 className="texttit">Universities</h1>
+                <div >
+                    <h1 className="texttitp">Universities of United States</h1>
                 </div>  
                 
                 <div className="navopt">

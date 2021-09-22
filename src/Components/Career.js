@@ -1,35 +1,47 @@
 
-import React, {useState } from "react";
-import DisplayUniv from './DisplayUniv.js'
+import React, {useEffect, useState} from 'react';
+import DisplayUnivCar from './DisplayUnivCar.js';
 
-export default function Career({careers, univs}) {
-    
-console.log('filtrando careers')
-console.log(careers);
-console.log('filtrando univs')
-console.log(univs);
 
-    const [careerId, setCareerId] = useState(null);
+export default function Career({careers}){
+    const BASE_URL="http://127.0.0.1:3000/";
+
     const [careerName, setCareerName] = useState(null);
+    const [changeCareer, setChangeCareer] = useState(false);
+    const [careerIds, setCareerIds] = useState(null)
+    const [carUnivs, setCarUnivs] = useState(null);
+    
+    console.log('CARUNIVS');
+    console.log(carUnivs);
+    console.log('CHANGE');
+    console.log(changeCareer);
+    let dir = BASE_URL + 'careers' +'/21/universities'
+    console.log(dir)
+   // useEffect(()=>{
+    //    fetch(dir)
+     //     .then (res => res.json())
+     //     .then (json => setCarUnivs(json))
+     //    },[])
 
     const onChangeComboCar = (e) =>{
         const selvalueid= e.target.value;
         let index = e.target.selectedIndex; //get text of selected option
         setCareerName(e.target.options[index].text);//get text of selected option
-        setCareerId(selvalueid);
+        setCareerIds(selvalueid);
+        setChangeCareer(true);
     }
 
     function filteredUnivCar(){
-       // const filtcar = careers.where(programs => {programs.univs.career.career_id == careerId } )
-       console.log('career Id')
-       console.log(careerId)
-      // const filtcar = univs.includes(careers).where(univs.careers.career_id == careerId)
-    
-        return (
-           <DisplayUniv />
-        )
+         //Looking at universities through careers
 
-   }
+        
+
+        if (carUnivs){
+            return (
+            <DisplayUnivCar carUnivs={carUnivs} />
+            )
+        }
+    }
 
     return(
         <div className="comp">
@@ -48,7 +60,7 @@ console.log(univs);
                 </tr>
             </div>
 
-            {careerId && filteredUnivCar()}
+            {filteredUnivCar() && carUnivs}               
 
         </div>
     )

@@ -21,8 +21,12 @@
         margin: 10px 20px 10px 10px;
   }
 
-  .texttit{
-    width: 80px;
+  .texttitp{
+    width: 150px;
+    font-size: 20px;
+    color:rgb(255, 81, 0);
+    background-color:wheat;
+    text-align: center;
   }
   
   .divilogo{
