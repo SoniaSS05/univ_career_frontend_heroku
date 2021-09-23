@@ -5,11 +5,11 @@ export default function DisplayUnivCar({careerIds, carUnivs}){
     return(
         <div>
             <h1>hi</h1>
-            {carUnivs.map((tp,i) => {
+            {carUnivs.map((tp) => {
                         return(
                             <div>{tp.name}</div>
                         )})
-        }
+            }
         </div>
     )
 }

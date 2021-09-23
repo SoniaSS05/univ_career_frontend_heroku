@@ -3,7 +3,9 @@ import Review from './Review.js'
 
 export default function ReviewContainer() {
 
-  const BASE_URL="http://127.0.0.1:3000/" 
+  //const BASE_URL="http://127.0.0.1:3000/" local
+  const BASE_URL="https://boiling-retreat-81427.herokuapp.com/" 
+  
   const[univs,setUnivs] =  useState(null)
   const[revs,setRevs] =  useState(null)
   

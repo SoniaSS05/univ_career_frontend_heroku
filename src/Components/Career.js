@@ -1,6 +1,18 @@
 
 import React, {useEffect, useState} from 'react';
 import DisplayUnivCar from './DisplayUnivCar.js';
+import {Modal, TextField, Button, Box} from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import {
+       Table,
+       TableBody, 
+       TableCell, 
+       TableContainer, 
+       TableHead, 
+       TableRow, 
+       Paper
+} from '@material-ui/core';
+import DisplayReview from './DisplayReview.js';
 
 
 export default function Career({careers, chsetCareerIds, carUnivs, careerIds }){
@@ -24,12 +36,26 @@ console.log('Careerid de Componente Career')
         console.log("entre a barra")
     }
 
+
+    //Modal Control Open Close 
+    //const [modalCarUniv, setmodalCarUniv] = useState(false);
+   // const openclosemodalCarUniv=()=>{
+        //setmodalCarUniv(!modalCarUniv)
+    //}
+
+    //let bodyCarUniv='';
+    //if(modalCarUniv){
+       // bodyCarUniv = ( <h1>hi</h1>
+        //)}
+
     function filteredUnivCar(){
          //Looking at universities through careers
-        console.log("I am here component Career");
+        // openclosemodalCarUniv();
         return(
-            <h1>hi</h1>
-        )   
+           // <Modal  open={modalCarUniv}  onclose={openclosemodalCarUniv}>{bodyCarUniv}</Modal>
+           <DisplayUnivCar careerIds={careerIds} carUnivs={carUnivs} />
+          
+        )
     }
 
     function verification(){
