@@ -1,39 +1,39 @@
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import DisplayUnivCar from './DisplayUnivCar.js';
 
 
-export default function Career({careers}){
-    
+export default function Career({careers, chsetCareerIds, carUnivs, careerIds }){
+    const BASE_URL="http://127.0.0.1:3000/";
 
     const [careerName, setCareerName] = useState(null);
     const [changeCareer, setChangeCareer] = useState(false);
-    const [careerIds, setCareerIds] = useState(1)
+    
   
  
-    //let dir = BASE_URL + 'careers' +'/21/universities'
-   
+    
 
 console.log('Careerid de Componente Career')
-console.log(careerIds)
+
     const onChangeComboCar = (e) =>{
         const selvalueid= e.target.value;
         let index = e.target.selectedIndex; //get text of selected option
         //setCareerName(e.target.options[index].text);//get text of selected option
-        setCareerIds(selvalueid);
-        //setChangeCareer(true);
+        chsetCareerIds(selvalueid);
+        setChangeCareer(true);
+        console.log("entre a barra")
     }
 
     function filteredUnivCar(){
          //Looking at universities through careers
         console.log("I am here component Career");
-        console.log(careerIds);
         return(
-          
-            <DisplayUnivCar careerIds={careerIds} />
-        )
-   
-        
+            <h1>hi</h1>
+        )   
+    }
+
+    function verification(){
+        carUnivs &&  filteredUnivCar()   
     }
 
     return(
@@ -44,7 +44,7 @@ console.log(careerIds)
                     <td>
                         <select className="comboboxfont" onChange={(e)=>{
                             onChangeComboCar(e)}} >
-                            <option value='1'>--Choose Career--</option>
+                            <option value='0'>--Choose Career--</option>
                             {careers.map((ctm) =>
                                 <option key={ctm.id} value={ctm.id}>{ctm.career_name}</option>         
                             )}
@@ -52,7 +52,8 @@ console.log(careerIds)
                     </td>
                 </tr>
             </div>
-            {careerIds && filteredUnivCar() }               
+           {verification()} 
+  
         </div>
     )
 }
