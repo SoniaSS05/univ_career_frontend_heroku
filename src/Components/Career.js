@@ -1,46 +1,39 @@
 
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import DisplayUnivCar from './DisplayUnivCar.js';
 
 
 export default function Career({careers}){
-    const BASE_URL="http://127.0.0.1:3000/";
+    
 
     const [careerName, setCareerName] = useState(null);
     const [changeCareer, setChangeCareer] = useState(false);
-    const [careerIds, setCareerIds] = useState(null)
-    const [carUnivs, setCarUnivs] = useState(null);
-    
-    console.log('CARUNIVS');
-    console.log(carUnivs);
-    console.log('CHANGE');
-    console.log(changeCareer);
-    let dir = BASE_URL + 'careers' +'/21/universities'
-    console.log(dir)
-   // useEffect(()=>{
-    //    fetch(dir)
-     //     .then (res => res.json())
-     //     .then (json => setCarUnivs(json))
-     //    },[])
+    const [careerIds, setCareerIds] = useState(1)
+  
+ 
+    //let dir = BASE_URL + 'careers' +'/21/universities'
+   
 
+console.log('Careerid de Componente Career')
+console.log(careerIds)
     const onChangeComboCar = (e) =>{
         const selvalueid= e.target.value;
         let index = e.target.selectedIndex; //get text of selected option
-        setCareerName(e.target.options[index].text);//get text of selected option
+        //setCareerName(e.target.options[index].text);//get text of selected option
         setCareerIds(selvalueid);
-        setChangeCareer(true);
+        //setChangeCareer(true);
     }
 
     function filteredUnivCar(){
          //Looking at universities through careers
-
+        console.log("I am here component Career");
+        console.log(careerIds);
+        return(
+          
+            <DisplayUnivCar careerIds={careerIds} />
+        )
+   
         
-
-        if (carUnivs){
-            return (
-            <DisplayUnivCar carUnivs={carUnivs} />
-            )
-        }
     }
 
     return(
@@ -51,7 +44,7 @@ export default function Career({careers}){
                     <td>
                         <select className="comboboxfont" onChange={(e)=>{
                             onChangeComboCar(e)}} >
-                            <option value='0'>--Choose Career--</option>
+                            <option value='1'>--Choose Career--</option>
                             {careers.map((ctm) =>
                                 <option key={ctm.id} value={ctm.id}>{ctm.career_name}</option>         
                             )}
@@ -59,9 +52,7 @@ export default function Career({careers}){
                     </td>
                 </tr>
             </div>
-
-            {filteredUnivCar() && carUnivs}               
-
+            {careerIds && filteredUnivCar() }               
         </div>
     )
 }

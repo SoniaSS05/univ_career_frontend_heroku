@@ -1,32 +1,24 @@
-import React, {useState } from "react";
-import ReactScrollableFeed from 'react-scrollable-feed';
+import React, {useEffect, useState } from "react";
+import DisplayUnivCar1 from './DisplayUnivCar1.js';
 
-export default function DisplayUnivCar(carUnivs){
-console.log('DisplayUniv')
-console.log(carUnivs)
- console.log('ENTRE ACA')
 
-    function display(){
-        return(
-            <div className="scrollstyle">    
-            <ReactScrollableFeed >
-                {carUnivs.map((tp,i) => {
-                    return(
-                        <div>
-                            <tr>
-                                <p style={{backgroundColor: i % 2 == 0?  'whitesmoke':'white', minHeight:'50px'}} key={i}>{tp.name}</p>
-                            </tr>
-                        </div>
-                    )
-                })
-                }
-            </ReactScrollableFeed>
-        </div>
-        )
-    }
+export default function DisplayUnivCar({careerIds}){
+    const BASE_URL="http://127.0.0.1:3000/";
+    const [carUnivs, setCarUnivs] = useState(null);
+   
+    useEffect(()=>{
+        fetch( BASE_URL + 'careers/' + '1' + '/universities')
+        .then (res => res.json())
+        .then (json => setCarUnivs(json))
+    },[])
+
+console.log('Carunivs');
+console.log(carUnivs);
 
     return(
-        <div>{ carUnivs && display()}</div>
-        
+        <div>
+            <DisplayUnivCar1 carUnivs={carUnivs} />
+        </div>
     )
+   
 }
